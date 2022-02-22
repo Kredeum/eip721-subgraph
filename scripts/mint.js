@@ -1,5 +1,4 @@
-
-const { ethers, getNamedAccounts} = require('@nomiclabs/buidler');
+const { ethers, getNamedAccounts } = require('@nomiclabs/hardhat');
 
 const args = process.argv;
 console.log(args);
@@ -11,13 +10,13 @@ async function main() {
     const namedAccounts = await getNamedAccounts();
     let account = namedAccounts[userName];
     const contract = await ethers.getContract(contractName, account);
-    const receipt = await contract.mint(account).then(tx => tx.wait());
+    const receipt = await contract.mint(account).then((tx) => tx.wait());
     console.log(receipt.gasUsed);
 }
 
 main()
-  .then(() => process.exit(0))
-  .catch(error => {
-    console.error(error);
-    process.exit(1);
-  });
+    .then(() => process.exit(0))
+    .catch((error) => {
+        console.error(error);
+        process.exit(1);
+    });
